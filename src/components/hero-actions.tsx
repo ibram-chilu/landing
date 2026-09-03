@@ -11,7 +11,7 @@ export function HeroActions() {
         {siteContent.hero.primaryCta}
       </PrimaryButton>
       <SecondaryButton
-        href="#watch-demo"
+        href="#watch-explainer-video"
         onClick={() => trackEvent(analyticsEvents.watchDemoClicked)}
       >
         {siteContent.hero.secondaryCta}

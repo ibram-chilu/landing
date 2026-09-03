@@ -1,6 +1,5 @@
 import { access } from "node:fs/promises";
 import path from "node:path";
-import Image from "next/image";
 import Script from "next/script";
 
 import { BenefitsGrid } from "@/components/benefits-grid";
@@ -52,7 +51,7 @@ export default async function HomePage() {
   };
 
   return (
-    <main id="top" className="overflow-x-hidden">
+    <main id="top" className="overflow-x-hidden bg-[#f6f8f5]">
       <Script
         id="software-application-structured-data"
         type="application/ld+json"
@@ -60,35 +59,22 @@ export default async function HomePage() {
       />
       <SiteHeader />
 
-      <section className="overflow-hidden bg-[linear-gradient(180deg,rgba(221,243,239,0.98)_0%,rgba(221,243,239,0.94)_58%,rgba(255,249,238,0.82)_100%)]">
-        <Container className="grid gap-10 py-16 md:gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-14 lg:py-24">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-synq-teal">
+      <section className="futuristic-hero overflow-hidden">
+        <Container className="relative py-20 sm:py-24 lg:py-32">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#76e3d7]">
               {siteContent.hero.eyebrow}
             </p>
-            <h1 className="mt-5 max-w-2xl font-display text-5xl font-bold tracking-tight text-synq-navy sm:text-6xl">
+            <h1 className="mt-5 max-w-2xl font-display text-5xl font-bold tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
               {siteContent.hero.headline}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-synq-ink/78">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-white/76">
               {siteContent.hero.body}
             </p>
-            <p className="mt-4 text-lg font-medium text-synq-teal">
+            <p className="mt-4 text-lg font-medium text-[#76e3d7]">
               {siteContent.hero.subline}
             </p>
             <HeroActions />
-          </div>
-          <div className="mx-auto w-full max-w-3xl lg:max-w-none">
-            <div className="rounded-[2rem] bg-[radial-gradient(circle_at_30%_24%,rgba(255,255,255,0.5),transparent_42%),linear-gradient(180deg,rgba(221,243,239,0.98)_0%,rgba(221,243,239,0.9)_100%)] px-2 py-3 sm:px-3 sm:py-4 lg:px-4 lg:py-5">
-              <Image
-                src="/synq-hero-device-mockup.png"
-                alt="Synq group-planning dashboard displayed on a laptop and mobile phone."
-                width={1536}
-                height={1024}
-                priority
-                sizes="(min-width: 1440px) 700px, (min-width: 1024px) 52vw, (min-width: 768px) 80vw, 92vw"
-                className="block h-auto w-full max-w-full object-contain"
-              />
-            </div>
           </div>
         </Container>
       </section>
@@ -103,10 +89,10 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section id="watch-demo" className="py-14 sm:py-18">
+      <section id="watch-explainer-video" className="py-14 sm:py-18">
         <Container>
           <SectionHeading
-            eyebrow="Watch demo"
+            eyebrow="Explainer video"
             title={siteContent.video.title}
             body={siteContent.video.body}
           />
@@ -170,7 +156,7 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section id="privacy" className="pb-20 pt-10">
+      <section id="privacy" className="pb-14 pt-4 sm:pb-16">
         <Container>
           <PrivacySection />
         </Container>

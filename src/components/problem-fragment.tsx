@@ -6,7 +6,7 @@ export function ProblemFragment() {
       {siteContent.problem.channels.map((channel) => (
         <div
           key={channel}
-          className="rounded-[1.6rem] border border-synq-navy/8 bg-white px-4 py-4 text-sm font-medium text-synq-ink shadow-card"
+          className="rounded-[1.6rem] border border-synq-teal/15 bg-white/85 px-4 py-4 text-sm font-medium text-synq-ink shadow-card"
         >
           {channel}
         </div>

@@ -6,7 +6,7 @@ export function UseCaseCards() {
       {siteContent.useCases.items.map((item) => (
         <article
           key={item.title}
-          className="rounded-[2rem] border border-synq-navy/10 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft"
+          className="rounded-[2rem] border border-synq-teal/15 bg-white/90 p-6 shadow-card transition hover:-translate-y-1 hover:border-synq-teal/40 hover:shadow-soft"
         >
           <h3 className="font-display text-2xl font-bold text-synq-navy">
             {item.title}

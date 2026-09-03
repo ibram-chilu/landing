@@ -14,13 +14,13 @@ export const siteContent = {
   description:
     "Synq helps groups create shared plans, generate suggested budgets, coordinate contributions and keep everyone aligned.",
   canonicalUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-  contactEmail: "privacy@synq.africa",
+  contactEmail: "ibram@synq.co.za",
   privacyReviewNote:
     "Draft privacy wording for the beta landing site. Review before public launch.",
   navItems: [
     { label: "How it works", href: "#how-it-works" },
     { label: "Use cases", href: "#use-cases" },
-    { label: "Watch Demo", href: "#watch-demo" },
+    { label: "Watch explainer video", href: "#watch-explainer-video" },
     { label: "Join early access", href: "#join-early-access" },
   ],
   socialLinks: [
@@ -33,7 +33,7 @@ export const siteContent = {
     body: "Synq is an AI-assisted way for groups to plan, coordinate and manage contributions together.",
     subline: "From ‘we should do this’ to ‘it’s sorted.’",
     primaryCta: "Join early access",
-    secondaryCta: "Explainer Video",
+    secondaryCta: "Watch explainer video",
   },
   problem: {
     title: "Group plans should not be this difficult.",
@@ -48,12 +48,12 @@ export const siteContent = {
     ],
   },
   video: {
-    title: "Watch the concept video of Synq.",
+    title: "Watch the Synq explainer video.",
     body: "Follow Refiloe and his friends as they turn a December getaway from a group-chat idea into one clear, coordinated plan.",
     fallbackVideoPath: "/synq-explainer.mp4",
     fallbackPosterPath: "/synq-video-poster.jpg",
     captionsPath: "/synq-captions.vtt",
-    placeholderTitle: "Demo media not added yet",
+    placeholderTitle: "Explainer video media not added yet",
     placeholderBody:
       "Add `public/synq-explainer.mp4` and `public/synq-video-poster.jpg`, or set `NEXT_PUBLIC_DEMO_VIDEO_URL` to a hosted MP4 before launch.",
   },
@@ -129,7 +129,7 @@ export const siteContent = {
   },
   form: {
     title: "Help shape a smarter way to plan together.",
-    body: "We’re inviting early users to test the beta version of Snyq and share how they currently organise group plans and contributions.",
+    body: "We’re inviting early users to test the beta version of Synq and share how they currently organise group plans and contributions.",
     success:
       "You’re on the list. We’ll be in touch when the Synq beta is ready for you.",
     cta: "Join early access",

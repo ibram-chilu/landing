@@ -165,7 +165,7 @@ export function SignupForm() {
         >
           <textarea
             {...register("biggestChallenge")}
-            className={`${inputClasses} min-h-32`}
+            className={`${inputClasses} min-h-24 resize-y`}
           />
         </Field>
       </div>

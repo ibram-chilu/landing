@@ -19,7 +19,7 @@ export function PrimaryButton({
       href={href}
       className={cn(
         baseButtonClasses,
-        "bg-synq-coral text-white shadow-card hover:bg-[#dc5d5a]",
+        "bg-[#17a99d] text-white shadow-[0_14px_34px_-16px_rgba(45,223,207,0.9)] hover:bg-[#119086]",
         className,
       )}
     >
@@ -45,7 +45,7 @@ export function SecondaryButton({
       onClick={onClick}
       className={cn(
         baseButtonClasses,
-        "border border-synq-navy/12 bg-white/80 text-synq-navy hover:border-synq-teal hover:text-synq-teal",
+        "border border-white/30 bg-white/5 text-white backdrop-blur hover:border-[#76e3d7] hover:bg-white/10 hover:text-[#b6fff7]",
         className,
       )}
     >
