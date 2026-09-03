@@ -20,7 +20,7 @@ export const siteContent = {
   navItems: [
     { label: "How it works", href: "#how-it-works" },
     { label: "Use cases", href: "#use-cases" },
-    { label: "Watch demo", href: "#watch-demo" },
+    { label: "Watch the explainer video", href: "#watch-demo" },
     { label: "Join early access", href: "#join-early-access" },
   ],
   socialLinks: [
@@ -48,7 +48,7 @@ export const siteContent = {
     ],
   },
   video: {
-    title: "See how Synq could work.",
+    title: "Watch our concept video of Synq.",
     body: "Follow Refiloe and his friends as they turn a December getaway from a group-chat idea into one clear, coordinated plan.",
     fallbackVideoPath: "/synq-explainer.mp4",
     fallbackPosterPath: "/synq-video-poster.jpg",
@@ -129,7 +129,7 @@ export const siteContent = {
   },
   form: {
     title: "Help shape a smarter way to plan together.",
-    body: "We’re inviting early users to test the Synq concept and share how they currently organise group plans and contributions.",
+    body: "We’re inviting early users to test the beta version of Snyq and share how they currently organise group plans and contributions.",
     success:
       "You’re on the list. We’ll be in touch when the Synq beta is ready for you.",
     cta: "Join early access",
