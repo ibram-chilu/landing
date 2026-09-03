@@ -29,7 +29,7 @@ export function StepMockups() {
       {siteContent.howItWorks.steps.map((step, index) => (
         <article
           key={step.title}
-          className="rounded-[2rem] border border-synq-teal/15 bg-white/90 p-5 shadow-card transition hover:-translate-y-1 hover:shadow-soft"
+          className="rounded-[2rem] border border-synq-navy/10 bg-white p-5 shadow-card"
         >
           <div className="inline-flex rounded-full bg-synq-mint px-3 py-1 text-xs font-semibold text-synq-teal">
             Step {index + 1}
@@ -38,7 +38,7 @@ export function StepMockups() {
             {step.title}
           </h3>
           <p className="mt-3 text-sm leading-7 text-synq-ink/78">{step.body}</p>
-          <div className="mt-5 rounded-[1.5rem] bg-[#edf7f4] p-4">
+          <div className="mt-5 rounded-[1.5rem] bg-synq-cream p-4">
             <div className="space-y-3">
               {mockupContent[index]?.map((line, lineIndex) => (
                 <div

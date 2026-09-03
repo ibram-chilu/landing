@@ -10,48 +10,9 @@
 body {
   min-height: 100vh;
   background:
-    radial-gradient(
-      circle at 72% 10%,
-      rgba(90, 210, 194, 0.15),
-      transparent 24%
-    ),
-    linear-gradient(180deg, #f6f8f5 0%, #ffffff 45%, #f7fbfc 100%);
+    radial-gradient(circle at top, rgba(221, 243, 239, 0.9), transparent 32%),
+    linear-gradient(180deg, #fff9ee 0%, #ffffff 42%, #f7fbfc 100%);
   color: #17212b;
-}
-
-.futuristic-hero {
-  position: relative;
-  isolation: isolate;
-  background:
-    radial-gradient(
-      circle at 72% 18%,
-      rgba(21, 182, 168, 0.35),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 8% 94%,
-      rgba(239, 106, 103, 0.38),
-      transparent 34%
-    ),
-    linear-gradient(120deg, #071b2f 0%, #0b2941 54%, #0c3849 100%);
-}
-
-.futuristic-hero::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  content: "";
-  opacity: 0.34;
-  background-image:
-    linear-gradient(rgba(160, 240, 229, 0.13) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(160, 240, 229, 0.13) 1px, transparent 1px);
-  background-size: 26px 26px;
-  mask-image: linear-gradient(
-    90deg,
-    black,
-    rgba(0, 0, 0, 0.32) 63%,
-    transparent
-  );
 }
 
 ::selection {

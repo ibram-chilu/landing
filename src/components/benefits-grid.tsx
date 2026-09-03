@@ -6,7 +6,7 @@ export function BenefitsGrid() {
       {siteContent.benefits.items.map((item) => (
         <article
           key={item.title}
-          className="rounded-[2rem] border border-synq-teal/15 bg-[#e9f6f1] p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-card"
+          className="rounded-[2rem] border border-synq-navy/10 bg-synq-cream p-6 shadow-sm"
         >
           <h3 className="font-display text-xl font-bold text-synq-navy">
             {item.title}

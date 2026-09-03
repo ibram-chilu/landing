@@ -10,11 +10,11 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#071b2f]/90 text-white backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-synq-navy/8 bg-synq-cream/92 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="#top"
-          className="font-display text-2xl font-bold tracking-tight text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-synq-coral"
+          className="font-display text-2xl font-bold tracking-tight text-synq-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-synq-coral"
         >
           Synq
         </Link>
@@ -24,7 +24,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-white/78 transition hover:text-[#76e3d7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-synq-coral"
+              className="text-sm font-medium text-synq-ink/78 transition hover:text-synq-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-synq-coral"
             >
               {item.label}
             </Link>
@@ -37,7 +37,7 @@ export function SiteHeader() {
           aria-controls="mobile-menu"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           onClick={() => setMenuOpen((value) => !value)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-synq-coral md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-synq-navy/10 bg-white text-synq-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-synq-coral md:hidden"
         >
           <span className="sr-only">Toggle navigation</span>
           <span
@@ -62,7 +62,7 @@ export function SiteHeader() {
       <div
         id="mobile-menu"
         className={cn(
-          "overflow-hidden border-t border-white/10 bg-[#0b233b] transition-[max-height] duration-300 md:hidden",
+          "overflow-hidden border-t border-synq-navy/8 bg-white transition-[max-height] duration-300 md:hidden",
           menuOpen ? "max-h-96" : "max-h-0 border-t-0",
         )}
       >
@@ -75,7 +75,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="rounded-2xl px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-synq-coral"
+              className="rounded-2xl px-4 py-3 text-sm font-medium text-synq-navy transition hover:bg-synq-mint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-synq-coral"
             >
               {item.label}
             </Link>
