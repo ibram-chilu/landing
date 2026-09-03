@@ -20,7 +20,7 @@ export const siteContent = {
   navItems: [
     { label: "How it works", href: "#how-it-works" },
     { label: "Use cases", href: "#use-cases" },
-    { label: "Watch the explainer video", href: "#watch-demo" },
+    { label: "Watch Demo", href: "#watch-demo" },
     { label: "Join early access", href: "#join-early-access" },
   ],
   socialLinks: [
@@ -33,7 +33,7 @@ export const siteContent = {
     body: "Synq is an AI-assisted way for groups to plan, coordinate and manage contributions together.",
     subline: "From ‘we should do this’ to ‘it’s sorted.’",
     primaryCta: "Join early access",
-    secondaryCta: "Watch the demo",
+    secondaryCta: "Explainer Video",
   },
   problem: {
     title: "Group plans should not be this difficult.",
@@ -48,7 +48,7 @@ export const siteContent = {
     ],
   },
   video: {
-    title: "Watch our concept video of Synq.",
+    title: "Watch the concept video of Synq.",
     body: "Follow Refiloe and his friends as they turn a December getaway from a group-chat idea into one clear, coordinated plan.",
     fallbackVideoPath: "/synq-explainer.mp4",
     fallbackPosterPath: "/synq-video-poster.jpg",
