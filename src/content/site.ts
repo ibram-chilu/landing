@@ -10,7 +10,7 @@ export const primaryUseCaseOptions = [
 
 export const siteContent = {
   siteName: "Synq",
-  title: "Synq — A smarter way to plan together",
+  title: "Synq | A smarter way to plan together",
   description:
     "Synq helps groups create shared plans, generate suggested budgets, coordinate contributions and keep everyone aligned.",
   canonicalUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
