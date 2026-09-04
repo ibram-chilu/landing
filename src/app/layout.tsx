@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  icons: {
+    icon: [{ url: "/synq-favicon.png", type: "image/png" }],
+    apple: [{ url: "/synq-favicon.png", type: "image/png" }],
+  },
   openGraph: {
     title: siteContent.title,
     description: siteContent.description,

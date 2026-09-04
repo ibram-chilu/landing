@@ -35,10 +35,6 @@ export function TurnstileWidget({ onToken }: TurnstileWidgetProps) {
   const [scriptReady, setScriptReady] = useState(false);
 
   useEffect(() => {
-    setScriptReady(Boolean(window.turnstile));
-  }, []);
-
-  useEffect(() => {
     if (
       !publicEnv.turnstileSiteKey ||
       !ref.current ||
@@ -80,7 +76,7 @@ export function TurnstileWidget({ onToken }: TurnstileWidgetProps) {
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
         strategy="afterInteractive"
-        onLoad={() => setScriptReady(true)}
+        onReady={() => setScriptReady(true)}
       />
       <div ref={ref} className="min-h-16" aria-live="polite" />
     </>
