@@ -127,4 +127,30 @@ describe("POST /api/early-access", () => {
       },
     });
   });
+
+  it("returns a generic response when signup persistence fails", async () => {
+    verifyTurnstileToken.mockResolvedValue(true);
+    submitEarlyAccessSignup.mockRejectedValue(
+      new Error("Firestore unavailable"),
+    );
+
+    const { POST } = await import("@/app/api/early-access/route");
+    const response = await POST(
+      new Request("http://localhost:3000/api/early-access", {
+        method: "POST",
+        body: JSON.stringify({
+          firstName: "Refiloe",
+          email: "refiloe@example.com",
+          primaryUseCase: "Group holiday",
+          consent: true,
+        }),
+      }),
+    );
+
+    expect(response.status).toBe(500);
+    await expect(response.json()).resolves.toMatchObject({
+      ok: false,
+      message: "We couldn't process your signup just now. Please try again.",
+    });
+  });
 });

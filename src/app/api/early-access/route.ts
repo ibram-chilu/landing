@@ -28,7 +28,9 @@ export async function POST(request: Request) {
         ? "That email is already on the early-access list."
         : "Signup received successfully.",
     });
-  } catch {
+  } catch (error) {
+    // Keep the public response generic, but retain enough detail in server logs to diagnose Firebase failures.
+    console.error("Early-access signup failed", error);
     return NextResponse.json(
       {
         ok: false,

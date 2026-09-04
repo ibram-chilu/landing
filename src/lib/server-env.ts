@@ -3,13 +3,26 @@ const adminEmails = (process.env.ADMIN_EMAILS || "")
   .map((email) => email.trim().toLowerCase())
   .filter(Boolean);
 
+export function normalizeFirebasePrivateKey(value?: string) {
+  if (!value) {
+    return undefined;
+  }
+
+  // Firebase downloads use escaped newlines, while some hosts provide real newlines.
+  return value
+    .trim()
+    .replace(/^['"]|['"]$/g, "")
+    .replace(/\\n/g, "\n")
+    .replace(/\r\n/g, "\n");
+}
+
 export const serverEnv = {
   adminEmails,
   turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY,
   firebaseAdmin: {
     projectId: process.env.FIREBASE_PROJECT_ID,
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    privateKey: normalizeFirebasePrivateKey(process.env.FIREBASE_PRIVATE_KEY),
   },
 };
 
