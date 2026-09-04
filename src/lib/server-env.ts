@@ -35,3 +35,10 @@ export function isTurnstileConfigured() {
     process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && serverEnv.turnstileSecretKey,
   );
 }
+
+export function isTurnstileUnconfigured() {
+  return Boolean(
+    !process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY &&
+    !serverEnv.turnstileSecretKey,
+  );
+}

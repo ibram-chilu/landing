@@ -145,7 +145,7 @@ export const siteContent = {
     title: "Privacy",
     points: [
       "We collect the details you submit in this form, including your name, email address, use case and any optional research context you provide.",
-      "We use this information to contact you about early access and to learn how people currently coordinate group plans and contributions.",
+      "We use this information to contact you about early access to the beta version and to learn how people currently coordinate group plans and contributions.",
       "We will not sell your personal information.",
       "You can request deletion by emailing the address below.",
     ],

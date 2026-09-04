@@ -1,8 +1,13 @@
-import { isTurnstileConfigured, serverEnv } from "@/lib/server-env";
+import {
+  isTurnstileConfigured,
+  isTurnstileUnconfigured,
+  serverEnv,
+} from "@/lib/server-env";
 
 export async function verifyTurnstileToken(token?: string | null) {
   if (!isTurnstileConfigured()) {
-    return true;
+    // Local development can run without Turnstile. Production must never silently disable it.
+    return process.env.NODE_ENV !== "production" && isTurnstileUnconfigured();
   }
 
   if (!token) {
@@ -28,6 +33,9 @@ export async function verifyTurnstileToken(token?: string | null) {
     return false;
   }
 
-  const result = (await response.json()) as { success?: boolean };
-  return Boolean(result.success);
+  const result = (await response.json()) as {
+    success?: boolean;
+    action?: string;
+  };
+  return Boolean(result.success && result.action === "early_access");
 }

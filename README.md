@@ -110,7 +110,8 @@ Copy [`.env.example`](C:\Users\ibram\OneDrive\Desktop\SynqPay Landing\landing\.e
 Notes:
 
 - `NEXT_PUBLIC_DEMO_VIDEO_URL` is optional if you serve the MP4 from `public/`.
-- Turnstile is optional during local development but recommended for production.
+- Turnstile is optional during local development. In production, set both `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY`; the signup API rejects submissions if either value is missing.
+- Create a managed Turnstile widget in Cloudflare for `synq.co.za` and `www.synq.co.za`. The public site key is safe to expose to the browser; the secret key belongs only in `.env.local` and Render's environment settings.
 - `NEXT_PUBLIC_ANALYTICS_ID` keeps analytics disabled by default until you intentionally enable it.
 
 ## 9. Apply Firestore rules

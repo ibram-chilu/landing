@@ -7,9 +7,6 @@ export function PrivacySection() {
         <h3 className="font-display text-xl font-bold text-synq-navy">
           {siteContent.privacy.title}
         </h3>
-        <span className="rounded-full bg-synq-mustard/18 px-3 py-1 text-xs font-semibold text-synq-navy">
-          Review before public launch
-        </span>
       </div>
       <div className="mt-4 space-y-2">
         {siteContent.privacy.points.map((point) => (

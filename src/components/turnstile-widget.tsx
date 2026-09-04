@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { publicEnv } from "@/lib/public-env";
 
@@ -10,8 +10,17 @@ declare global {
     turnstile?: {
       render: (
         selector: HTMLElement,
-        options: { sitekey: string; callback: (token: string) => void },
-      ) => void;
+        options: {
+          sitekey: string;
+          callback: (token: string) => void;
+          "error-callback": () => void;
+          "expired-callback": () => void;
+          action: string;
+          theme: "light";
+          size: "flexible";
+        },
+      ) => string;
+      remove: (widgetId: string) => void;
     };
   }
 }
@@ -22,17 +31,40 @@ type TurnstileWidgetProps = {
 
 export function TurnstileWidget({ onToken }: TurnstileWidgetProps) {
   const ref = useRef<HTMLDivElement | null>(null);
+  const widgetId = useRef<string | null>(null);
+  const [scriptReady, setScriptReady] = useState(false);
 
   useEffect(() => {
-    if (!publicEnv.turnstileSiteKey || !ref.current || !window.turnstile) {
+    setScriptReady(Boolean(window.turnstile));
+  }, []);
+
+  useEffect(() => {
+    if (
+      !publicEnv.turnstileSiteKey ||
+      !ref.current ||
+      !scriptReady ||
+      !window.turnstile
+    ) {
       return;
     }
 
-    window.turnstile.render(ref.current, {
+    widgetId.current = window.turnstile.render(ref.current, {
       sitekey: publicEnv.turnstileSiteKey,
       callback: onToken,
+      "error-callback": () => onToken(""),
+      "expired-callback": () => onToken(""),
+      action: "early_access",
+      theme: "light",
+      size: "flexible",
     });
-  }, [onToken]);
+
+    return () => {
+      if (widgetId.current && window.turnstile) {
+        window.turnstile.remove(widgetId.current);
+        widgetId.current = null;
+      }
+    };
+  }, [onToken, scriptReady]);
 
   if (!publicEnv.turnstileSiteKey) {
     return (
@@ -47,9 +79,10 @@ export function TurnstileWidget({ onToken }: TurnstileWidgetProps) {
     <>
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
+        onLoad={() => setScriptReady(true)}
       />
-      <div ref={ref} className="min-h-16" />
+      <div ref={ref} className="min-h-16" aria-live="polite" />
     </>
   );
 }
