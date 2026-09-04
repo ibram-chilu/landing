@@ -113,6 +113,7 @@ Notes:
 - Turnstile is optional during local development. In production, set both `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY`; the signup API rejects submissions if either value is missing.
 - Create a managed Turnstile widget in Cloudflare for `synq.co.za` and `www.synq.co.za`. The public site key is safe to expose to the browser; the secret key belongs only in `.env.local` and Render's environment settings.
 - `NEXT_PUBLIC_ANALYTICS_ID` keeps analytics disabled by default until you intentionally enable it.
+- The supplied Synq explainer currently has embedded captions. If you switch to an external WebVTT caption track later, set `useEmbeddedCaptions` to `false` in `src/content/site.ts` and replace `public/synq-captions.vtt`.
 
 ## 9. Apply Firestore rules
 

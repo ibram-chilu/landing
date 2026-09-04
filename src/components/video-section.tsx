@@ -70,7 +70,7 @@ export function VideoSection({
         }}
       >
         <source src={videoSrc} type="video/mp4" />
-        {hasCaptions ? (
+        {hasCaptions && !siteContent.video.useEmbeddedCaptions ? (
           <track
             kind="captions"
             src={siteContent.video.captionsPath}

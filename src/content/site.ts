@@ -53,6 +53,7 @@ export const siteContent = {
     fallbackVideoPath: "/synq-explainer.mp4",
     fallbackPosterPath: "/synq-video-poster.jpg",
     captionsPath: "/synq-captions.vtt",
+    useEmbeddedCaptions: true,
     placeholderTitle: "Explainer video media not added yet",
     placeholderBody:
       "Add `public/synq-explainer.mp4` and `public/synq-video-poster.jpg`, or set `NEXT_PUBLIC_DEMO_VIDEO_URL` to a hosted MP4 before launch.",
