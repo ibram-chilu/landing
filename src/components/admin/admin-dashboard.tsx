@@ -4,6 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 
 import type { AdminUser } from "@/lib/auth";
 import type { SignupRecord } from "@/lib/admin-service";
+import {
+  analyticsEvents,
+  identifyPostHogUser,
+  resetPostHog,
+  trackEvent,
+} from "@/lib/analytics";
 import { signupStatuses } from "@/lib/signup";
 import { siteContent } from "@/content/site";
 
@@ -26,6 +32,13 @@ export function AdminDashboard({
   const [useCase, setUseCase] = useState("all");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    identifyPostHogUser(user.id, {
+      email: user.email,
+      name: user.name,
+    });
+  }, [user.email, user.id, user.name]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -97,7 +110,12 @@ export function AdminDashboard({
       setSignups(previous);
       const data = (await response.json()) as { message?: string };
       setError(data.message || "Could not update status.");
+      return;
     }
+
+    trackEvent(analyticsEvents.adminSignupStatusUpdated, {
+      signup_status: nextStatus,
+    });
   }
 
   return (
@@ -173,6 +191,7 @@ export function AdminDashboard({
       <div className="flex flex-wrap items-center gap-3">
         <a
           href={exportHref}
+          onClick={() => trackEvent(analyticsEvents.adminSignupExportRequested)}
           className="inline-flex items-center justify-center rounded-full bg-synq-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#0d2237]"
         >
           Export visible CSV
@@ -181,6 +200,7 @@ export function AdminDashboard({
           type="button"
           onClick={async () => {
             await fetch("/api/admin/session", { method: "DELETE" });
+            resetPostHog();
             window.location.reload();
           }}
           className="inline-flex items-center justify-center rounded-full border border-synq-navy/12 bg-white px-5 py-3 text-sm font-semibold text-synq-navy"

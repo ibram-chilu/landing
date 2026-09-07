@@ -5,6 +5,7 @@ import { getAdminAuth } from "@/lib/firebase-admin";
 export const ADMIN_SESSION_COOKIE = "synq_admin_token";
 
 export type AdminUser = {
+  id: string;
   email: string;
   name?: string;
 };
@@ -28,6 +29,7 @@ export async function getVerifiedAdminSession(allowlist: string[]) {
   }
 
   return {
+    id: decoded.uid,
     email,
     name: decoded.name,
   } satisfies AdminUser;

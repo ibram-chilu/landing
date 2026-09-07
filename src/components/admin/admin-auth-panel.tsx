@@ -3,6 +3,11 @@
 import { signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 
+import {
+  analyticsEvents,
+  identifyPostHogUser,
+  trackEvent,
+} from "@/lib/analytics";
 import { getFirebaseClientAuth, googleProvider } from "@/lib/firebase-client";
 import { isFirebaseClientConfigured } from "@/lib/public-env";
 
@@ -41,6 +46,12 @@ export function AdminAuthPanel({
         const data = (await response.json()) as { message?: string };
         throw new Error(data.message || "Could not create admin session.");
       }
+
+      identifyPostHogUser(result.user.uid, {
+        email: result.user.email || undefined,
+        name: result.user.displayName || undefined,
+      });
+      trackEvent(analyticsEvents.adminSignInCompleted);
 
       window.location.reload();
     } catch (err) {
