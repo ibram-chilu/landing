@@ -7,7 +7,7 @@ Production-ready Next.js landing site for the Synq beta, with a real early-acces
 - Responsive App Router website built with TypeScript, Tailwind CSS, and ESLint
 - Editable site copy and sample data in [`src/content/site.ts`](C:\Users\ibram\OneDrive\Desktop\SynqPay Landing\landing\src\content\site.ts)
 - HTML5 explainer video section with poster, captions placeholder, and development fallback
-- Early-access signup form with validation, honeypot protection, optional Turnstile support, and friendly duplicate handling
+- Early-access signup form with validation, honeypot protection, and friendly duplicate handling
 - Server-side `/api/early-access` endpoint using Zod and Firebase Admin SDK
 - Firestore collection storage in `earlyAccessSignups`
 - Protected admin dashboard at `/admin/signups` using Firebase Authentication plus an `ADMIN_EMAILS` allowlist
@@ -103,15 +103,11 @@ Copy [`.env.example`](C:\Users\ibram\OneDrive\Desktop\SynqPay Landing\landing\.e
 - `FIREBASE_CLIENT_EMAIL`
 - `FIREBASE_PRIVATE_KEY`
 - `ADMIN_EMAILS`
-- `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
-- `TURNSTILE_SECRET_KEY`
 - `NEXT_PUBLIC_ANALYTICS_ID`
 
 Notes:
 
 - `NEXT_PUBLIC_DEMO_VIDEO_URL` is optional if you serve the MP4 from `public/`.
-- Turnstile is optional during local development. In production, set both `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY`; the signup API rejects submissions if either value is missing.
-- Create a managed Turnstile widget in Cloudflare for `synq.co.za` and `www.synq.co.za`. The public site key is safe to expose to the browser; the secret key belongs only in `.env.local` and Render's environment settings.
 - `NEXT_PUBLIC_ANALYTICS_ID` keeps analytics disabled by default until you intentionally enable it.
 - The supplied Synq explainer currently has embedded captions. If you switch to an external WebVTT caption track later, set `useEmbeddedCaptions` to `false` in `src/content/site.ts` and replace `public/synq-captions.vtt`.
 
@@ -133,6 +129,12 @@ firebase deploy --only firestore:rules
 4. Submit the same email again to confirm the duplicate-friendly response.
 
 All public form submissions go through `/api/early-access`. The browser never writes directly to Firestore.
+
+## Anti-spam and rate limiting
+
+The signup route retains a hidden `website` honeypot, strict server-side Zod validation and deterministic normalized-email document IDs to prevent duplicate registrations. It does not store raw IP addresses.
+
+Render web services are stateless and can run more than one instance, so do not use an in-memory rate limiter. Before a higher-traffic launch, add a shared rate limit at the edge or API layer, such as Cloudflare WAF/Rate Limiting or Upstash Redis with `@upstash/ratelimit`. A sensible initial policy is five signup attempts per IP address in ten minutes, without persisting IP addresses in Firestore.
 
 ## 11. View registrations in Firebase
 

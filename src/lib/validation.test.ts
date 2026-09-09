@@ -49,6 +49,26 @@ describe("signupSchema", () => {
     expect(result.success).toBe(false);
   });
 
+  it("rejects a submission when the hidden honeypot has been filled", () => {
+    const result = signupSchema.safeParse({
+      firstName: "Lerato",
+      email: "lerato@example.com",
+      primaryUseCase: "Group gift",
+      whatsappNumber: "",
+      typicalGroupSize: "",
+      biggestChallenge: "",
+      consent: true,
+      website: "https://spam.example",
+      sourcePage: "/",
+      referrer: "",
+      utmSource: "",
+      utmMedium: "",
+      utmCampaign: "",
+    });
+
+    expect(result.success).toBe(false);
+  });
+
   it("rejects a use case outside the allowed options", () => {
     const result = signupSchema.safeParse({
       firstName: "Lerato",

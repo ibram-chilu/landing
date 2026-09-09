@@ -53,7 +53,6 @@ export const signupSchema = z.object({
   utmSource: optionalSanitizedString(maxLengths.utm),
   utmMedium: optionalSanitizedString(maxLengths.utm),
   utmCampaign: optionalSanitizedString(maxLengths.utm),
-  turnstileToken: z.string().optional(),
 });
 
 export type SignupInput = z.input<typeof signupSchema>;

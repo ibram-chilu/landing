@@ -18,7 +18,6 @@ export function normalizeFirebasePrivateKey(value?: string) {
 
 export const serverEnv = {
   adminEmails,
-  turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY,
   firebaseAdmin: {
     projectId: process.env.FIREBASE_PROJECT_ID,
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
@@ -28,17 +27,4 @@ export const serverEnv = {
 
 export function isFirebaseAdminConfigured() {
   return Object.values(serverEnv.firebaseAdmin).every(Boolean);
-}
-
-export function isTurnstileConfigured() {
-  return Boolean(
-    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && serverEnv.turnstileSecretKey,
-  );
-}
-
-export function isTurnstileUnconfigured() {
-  return Boolean(
-    !process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY &&
-    !serverEnv.turnstileSecretKey,
-  );
 }

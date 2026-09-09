@@ -1,7 +1,6 @@
 export const publicEnv = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   analyticsId: process.env.NEXT_PUBLIC_ANALYTICS_ID,
-  turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
   firebase: {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
     authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,

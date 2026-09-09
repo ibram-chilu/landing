@@ -7,9 +7,7 @@ import { useForm } from "react-hook-form";
 
 import { siteContent } from "@/content/site";
 import { analyticsEvents, trackEvent } from "@/lib/analytics";
-import { publicEnv } from "@/lib/public-env";
 import { signupSchema, type SignupInput } from "@/lib/validation";
-import { TurnstileWidget } from "@/components/turnstile-widget";
 
 type FormState =
   | { status: "idle" }
@@ -20,7 +18,6 @@ export function SignupForm() {
   const [submissionState, setSubmissionState] = useState<FormState>({
     status: "idle",
   });
-  const [turnstileToken, setTurnstileToken] = useState("");
   const [hasTrackedStart, setHasTrackedStart] = useState(false);
   const {
     register,
@@ -44,7 +41,6 @@ export function SignupForm() {
       utmSource: "",
       utmMedium: "",
       utmCampaign: "",
-      turnstileToken: "",
     },
   });
 
@@ -59,7 +55,6 @@ export function SignupForm() {
       },
       body: JSON.stringify({
         ...values,
-        turnstileToken,
         sourcePage: window.location.pathname,
         referrer: document.referrer || "",
         utmSource: params.get("utm_source") || "",
@@ -185,11 +180,6 @@ export function SignupForm() {
       <input type="hidden" {...register("utmSource")} />
       <input type="hidden" {...register("utmMedium")} />
       <input type="hidden" {...register("utmCampaign")} />
-      <input type="hidden" {...register("turnstileToken")} />
-
-      <div className="mt-6">
-        <TurnstileWidget onToken={setTurnstileToken} />
-      </div>
 
       <label className="mt-6 flex gap-3 rounded-2xl border border-synq-navy/8 bg-synq-cream p-4 text-sm text-synq-ink">
         <input
@@ -222,13 +212,6 @@ export function SignupForm() {
         </p>
       ) : null}
 
-      {!publicEnv.turnstileSiteKey ? (
-        <p className="mt-5 text-sm text-synq-ink/72">
-          Turnstile is optional in local development, but recommended before
-          public launch.
-        </p>
-      ) : null}
-
       <button
         type="submit"
         onClick={() => {
@@ -238,7 +221,6 @@ export function SignupForm() {
           setValue("utmSource", params.get("utm_source") || "");
           setValue("utmMedium", params.get("utm_medium") || "");
           setValue("utmCampaign", params.get("utm_campaign") || "");
-          setValue("turnstileToken", turnstileToken);
         }}
         className="mt-6 inline-flex items-center justify-center rounded-full bg-synq-coral px-5 py-3 text-sm font-semibold text-white shadow-card transition hover:bg-[#dc5d5a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-synq-coral disabled:cursor-not-allowed disabled:opacity-70"
         disabled={isSubmitting}
